@@ -9,6 +9,7 @@
 <blockquote align="center">“A arte de programar consiste em organizar e dominar a complexidade”!</blockquote>
 
 <p align="center">
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/mcolla/api-github-interview?color=%2304D361">
   
   <a href="#">
     <img alt="Made by mcolla" src="https://img.shields.io/badge/made%20by-mcolla-%2304D361">
