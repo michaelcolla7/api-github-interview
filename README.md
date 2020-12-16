@@ -34,17 +34,20 @@ Aplicação desenvolvida utilizando o [Reactjs](https://pt-br.reactjs.org/).
 ### Descrição
 
 - home: permite busca por repositórios
+<img alt="m1" src="https://user-images.githubusercontent.com/668531/102303723-9aa3a100-3f3a-11eb-8349-ab2aef6cc838.jpg">
 
-- após a pesquisa, é possível saber mais detalhes do repositório, clicando sob o mesmo.
 
-- nos detalhes do repositório, é realizado uma busca por todas as issues do repositório e listadas logo abaixo
+- após a pesquisa, é possível saber mais detalhes do repositório, clicando sob o mesmo. Nos detalhes do repositório, é realizado uma busca por todas as issues do repositório e listadas logo abaixo
+<img alt="m2" src="https://user-images.githubusercontent.com/668531/102304082-5bc21b00-3f3b-11eb-8dbb-267ac80db521.jpg">
 
-- Usuários: permite busca por usuários
-
-- após a pesquisa, é possível saber mais detalhes do usuário, clicando sob o mesmo.
+- Usuários: permite busca por usuários. Após a pesquisa, é possível saber mais detalhes do usuário, clicando sob o mesmo.
+<img alt="m3" src="https://user-images.githubusercontent.com/668531/102304184-9b890280-3f3b-11eb-9d9d-62a66b90f8c3.jpg">
 
 - nos detalhes do usuário, é realizado uma busca por todos os repositórios publicos dele e os repositórios mais acessados por ele
+<img alt="m4" src="https://user-images.githubusercontent.com/668531/102304216-b3608680-3f3b-11eb-9148-eec45c84cf17.jpg">
 
+- Tratativa de erros em caso de campo vazio ou repositório ou user não encontrado na base do Github.
+<img alt="m5" src="https://user-images.githubusercontent.com/668531/102304260-cd9a6480-3f3b-11eb-9322-af5e2ce6f5ce.jpg">
 
 ## :memo: Licença
 
