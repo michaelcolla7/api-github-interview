@@ -13,7 +13,7 @@ interface Repository {
   owner: {
     login: string;
     avatar_url: string;
-  }
+  };
 }
 
 const Dashboard: React.FC = () => {
@@ -21,25 +21,29 @@ const Dashboard: React.FC = () => {
   const [inputError, setinputError] = useState('');
 
   const [repositories, setRepositories] = useState<Repository[]>(() => {
-    const storagedRepositories = localStorage.getItem('@GitHubExplorer:repositories');
+    const storagedRepositories = localStorage.getItem(
+      '@GitHubExplorer:repositories',
+    );
 
-    if (storagedRepositories){
+    if (storagedRepositories) {
       return JSON.parse(storagedRepositories);
-    } else {
-      return [];
     }
+    return [];
   });
 
   useEffect(() => {
-    localStorage.setItem('@GitHubExplorer:repositories', JSON.stringify(repositories));
+    localStorage.setItem(
+      '@GitHubExplorer:repositories',
+      JSON.stringify(repositories),
+    );
   }, [repositories]);
 
   async function handleAddRepository(
-    event: FormEvent<HTMLFormElement>
+    event: FormEvent<HTMLFormElement>,
   ): Promise<void> {
     event.preventDefault();
 
-    if (!newRepo){
+    if (!newRepo) {
       setinputError('Digite o autor/name do repositório');
       return;
     }
@@ -67,11 +71,12 @@ const Dashboard: React.FC = () => {
       </Header>
       <Title>Explore repositórios no Github</Title>
 
-      <Form hasError={!!(inputError)} onSubmit={handleAddRepository}>
+      <Form hasError={!!inputError} onSubmit={handleAddRepository}>
         <input
           value={newRepo}
-          onChange = {(e) => setNewRepo(e.target.value)}
-          placeholder="Digite o nome do repositório"/>
+          onChange={e => setNewRepo(e.target.value)}
+          placeholder="Digite o nome do repositório"
+        />
         <button type="submit">Pesquisar</button>
       </Form>
 
@@ -79,16 +84,20 @@ const Dashboard: React.FC = () => {
 
       <Repositories>
         {repositories.map(repository => (
-          <Link key={repository.full_name} to={`repositories/${repository.full_name}`}>
+          <Link
+            key={repository.full_name}
+            to={`repositories/${repository.full_name}`}
+          >
             <img
               src={repository.owner.avatar_url}
-              alt={repository.owner.login}/>
+              alt={repository.owner.login}
+            />
             <div>
               <strong>{repository.full_name}</strong>
               <p>{repository.description}</p>
             </div>
 
-            <FiChevronRight size="20"/>
+            <FiChevronRight size="20" />
           </Link>
         ))}
       </Repositories>

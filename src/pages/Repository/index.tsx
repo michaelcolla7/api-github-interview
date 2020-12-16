@@ -20,7 +20,7 @@ interface Repository {
   owner: {
     login: string;
     avatar_url: string;
-  }
+  };
 }
 
 interface Issue {
@@ -29,7 +29,7 @@ interface Issue {
   html_url: string;
   user: {
     login: string;
-  }
+  };
 }
 
 const Repos: React.FC = () => {
@@ -39,11 +39,11 @@ const Repos: React.FC = () => {
   const { params } = useRouteMatch<RepositoryParams>();
 
   useEffect(() => {
-    api.get(`repos/${params.repository}`).then((response) => {
+    api.get(`repos/${params.repository}`).then(response => {
       setRepository(response.data);
     });
 
-    api.get(`repos/${params.repository}/issues`).then((response) => {
+    api.get(`repos/${params.repository}/issues`).then(response => {
       setIssues(response.data);
     });
   }, [params.repository]);
@@ -58,10 +58,13 @@ const Repos: React.FC = () => {
         </Link>
       </Header>
 
-      { repository ? (
+      {repository ? (
         <RepositoryInfo>
           <header>
-            <img src={repository.owner.avatar_url} alt={repository.owner.login}/>
+            <img
+              src={repository.owner.avatar_url}
+              alt={repository.owner.login}
+            />
             <div>
               <strong>{repository.full_name}</strong>
               <p>{repository.description}</p>
@@ -84,17 +87,22 @@ const Repos: React.FC = () => {
         </RepositoryInfo>
       ) : (
         <p>Carregando...</p>
-      ) }
+      )}
 
       <Issues>
         {issues.map(issue => (
-          <a key={issue.id} href={issue.html_url} target="_blank">
+          <a
+            key={issue.id}
+            href={issue.html_url}
+            rel="noreferrer"
+            target="_blank"
+          >
             <div>
               <strong>{issue.title}</strong>
               <p>{issue.user.login}</p>
             </div>
 
-            <FiChevronRight size="20"/>
+            <FiChevronRight size="20" />
           </a>
         ))}
       </Issues>

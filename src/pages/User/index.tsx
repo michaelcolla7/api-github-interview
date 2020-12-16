@@ -43,20 +43,22 @@ interface StarredRepo {
 const Repos: React.FC = () => {
   const [user, setUser] = useState<UserData | null>(null);
   const [repositories, setRepos] = useState<Repo[]>([]);
-  const [starredRepositories, setStarredrepositories] = useState<StarredRepo[]>([]);
+  const [starredRepositories, setStarredrepositories] = useState<StarredRepo[]>(
+    [],
+  );
 
   const { params } = useRouteMatch<RepositoryParams>();
 
   useEffect(() => {
-    api.get(`${params.user}`).then((response) => {
+    api.get(`${params.user}`).then(response => {
       setUser(response.data);
     });
 
-    api.get(`${params.user}/repos`).then((response) => {
+    api.get(`${params.user}/repos`).then(response => {
       setRepos(response.data);
     });
 
-    api.get(`${params.user}/starred`).then((response) => {
+    api.get(`${params.user}/starred`).then(response => {
       setStarredrepositories(response.data);
     });
   }, [params.user]);
@@ -75,10 +77,10 @@ const Repos: React.FC = () => {
         </Link>
       </Header>
 
-      { user ? (
+      {user ? (
         <UserInfo>
           <header>
-            <img src={user.avatar_url} alt={user.login}/>
+            <img src={user.avatar_url} alt={user.login} />
             <div>
               <strong>{user.login}</strong>
               <p>{user.name}</p>
@@ -100,20 +102,27 @@ const Repos: React.FC = () => {
           </ul>
         </UserInfo>
       ) : (
-        <p><img src={imgLoading} width="32" alt="Carregando, aguarde"/>
-          Carregando...</p>
-      ) }
+        <p>
+          <img src={imgLoading} width="32" alt="Carregando, aguarde" />
+          Carregando...
+        </p>
+      )}
 
       <Repositories>
         <h3>Repositórios do user:</h3>
         {repositories.map(repository => (
-          <a key={repository.id} href={repository.html_url} target="_blank">
+          <a
+            key={repository.id}
+            href={repository.html_url}
+            rel="noreferrer"
+            target="_blank"
+          >
             <div>
               <strong>{repository.full_name}</strong>
               <p>{repository.description}</p>
             </div>
 
-            <FiChevronRight size="20"/>
+            <FiChevronRight size="20" />
           </a>
         ))}
       </Repositories>
@@ -121,13 +130,18 @@ const Repos: React.FC = () => {
       <StarredRepositories>
         <h2>Repositórios mais visitados pelo user:</h2>
         {starredRepositories.map(starredRepo => (
-          <a key={starredRepo.id} href={starredRepo.html_url} target="_blank">
+          <a
+            key={starredRepo.id}
+            href={starredRepo.html_url}
+            rel="noreferrer"
+            target="_blank"
+          >
             <div>
               <strong>{starredRepo.full_name}</strong>
               <p>{starredRepo.description}</p>
             </div>
 
-            <FiChevronRight size="20"/>
+            <FiChevronRight size="20" />
           </a>
         ))}
       </StarredRepositories>

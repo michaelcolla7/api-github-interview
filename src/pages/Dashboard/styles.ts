@@ -12,7 +12,7 @@ export const Header = styled.header`
 
   a {
     display: flex;
-    align-items:center;
+    align-items: center;
     text-decoration: none;
     color: #a8a8b3;
     transition: color 0.2s;
@@ -52,9 +52,11 @@ export const Form = styled.form<FormProps>`
     border: 2px solid #fff;
     border-right: 0;
 
-    ${(props) => props.hasError && css`
-      border-color: #c53030;
-    `}
+    ${props =>
+      props.hasError &&
+      css`
+        border-color: #c53030;
+      `}
 
     &::placeholder {
       color: #a8a8b3;
@@ -78,7 +80,7 @@ export const Form = styled.form<FormProps>`
 `;
 
 export const Error = styled.span`
-  display:block;
+  display: block;
   color: #c53030;
   margin-top: 8px;
 `;
@@ -135,5 +137,3 @@ export const Repositories = styled.div`
     }
   }
 `;
-
-

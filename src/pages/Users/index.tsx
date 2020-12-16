@@ -20,11 +20,10 @@ const User: React.FC = () => {
   const [users, setUsers] = useState<UserData[]>(() => {
     const storagedUsers = localStorage.getItem('@GitHubExplorer:users');
 
-    if (storagedUsers){
+    if (storagedUsers) {
       return JSON.parse(storagedUsers);
-    } else {
-      return [];
     }
+    return [];
   });
 
   useEffect(() => {
@@ -32,11 +31,11 @@ const User: React.FC = () => {
   }, [users]);
 
   async function handleAddUser(
-    event: FormEvent<HTMLFormElement>
+    event: FormEvent<HTMLFormElement>,
   ): Promise<void> {
     event.preventDefault();
 
-    if (!newUser){
+    if (!newUser) {
       setinputError('Digite o nome do usuário');
       return;
     }
@@ -64,11 +63,12 @@ const User: React.FC = () => {
       </Header>
       <Title>Explore usuários no Github</Title>
 
-      <Form hasError={!!(inputError)} onSubmit={handleAddUser}>
+      <Form hasError={!!inputError} onSubmit={handleAddUser}>
         <input
           value={newUser}
-          onChange = {(e) => setNewUser(e.target.value)}
-          placeholder="Digite o nome do usuário"/>
+          onChange={e => setNewUser(e.target.value)}
+          placeholder="Digite o nome do usuário"
+        />
         <button type="submit">Pesquisar</button>
       </Form>
 
@@ -77,15 +77,13 @@ const User: React.FC = () => {
       <Users>
         {users.map(user => (
           <Link key={user.login} to={`user/${user.login}`}>
-            <img
-              src={user.avatar_url}
-              alt={user.login}/>
+            <img src={user.avatar_url} alt={user.login} />
             <div>
               <strong>{user.login}</strong>
               <p>{user.html_url}</p>
             </div>
 
-            <FiChevronRight size="20"/>
+            <FiChevronRight size="20" />
           </Link>
         ))}
       </Users>
